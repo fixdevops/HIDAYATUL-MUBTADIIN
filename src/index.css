@@ -1,0 +1,192 @@
+@import 'tailwindcss';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+    --color-cream: #f7f4ec;
+    --color-sand: #ece6d8;
+    --color-ink: #121915;
+    --color-ink-soft: #59635b;
+
+    --color-brand-50: #eef2ee;
+    --color-brand-100: #dde5de;
+    --color-brand-200: #c1cfc3;
+    --color-brand-300: #9db1a1;
+    --color-brand-400: #748d79;
+    --color-brand-500: #4f6b56;
+    --color-brand-600: #39533f;
+    --color-brand-700: #2c4233;
+    --color-brand-800: #223529;
+    --color-brand-900: #1a2a20;
+    --color-brand-950: #121e16;
+
+    /* Aksen emas hangat (nama token dipertahankan agar halaman admin tetap konsisten). */
+    --color-lime-50: #f8f4e9;
+    --color-lime-100: #f0e8d2;
+    --color-lime-200: #e5d7b2;
+    --color-lime-300: #d6c18c;
+    --color-lime-400: #c3a668;
+    --color-lime-500: #ad8d4c;
+    --color-lime-600: #8f7139;
+    --color-lime-700: #6f5730;
+
+    --color-gold-50: #fbf7ec;
+    --color-gold-100: #f4ecd6;
+    --color-gold-200: #e9dbb4;
+    --color-gold-300: #dcc690;
+    --color-gold-400: #c9ab6a;
+    --color-gold-500: #b3924f;
+    --color-gold-600: #93763b;
+
+    --radius-xs: 1px;
+    --radius-sm: 2px;
+    --radius-md: 3px;
+    --radius-lg: 4px;
+    --radius-xl: 4px;
+    --radius-2xl: 5px;
+    --radius-3xl: 5px;
+    --radius-4xl: 6px;
+
+    --shadow-soft: 0 1px 2px rgb(18 25 21 / 0.04);
+    --shadow-lift: 0 20px 44px -34px rgb(18 25 21 / 0.4);
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-cream font-sans text-ink antialiased;
+    }
+
+    ::selection {
+        @apply bg-lime-200 text-brand-950;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-brand-600);
+        outline-offset: 2px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--color-cream);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgb(18 25 21 / 0.18);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgb(18 25 21 / 0.3);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
+}
+
+@layer components {
+    .container-page {
+        @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8 lg:px-10;
+    }
+
+    .eyebrow {
+        @apply inline-flex items-center gap-3 text-[10.5px] font-semibold uppercase tracking-[0.2em] text-ink/50;
+    }
+
+    .eyebrow::before {
+        content: '';
+        @apply h-px w-7 shrink-0 bg-lime-500;
+    }
+
+    .display-xl {
+        @apply text-[2.4rem] font-semibold leading-[1.04] tracking-[-0.035em] sm:text-[3.2rem] lg:text-[3.7rem];
+    }
+
+    .display-lg {
+        @apply text-[1.9rem] font-semibold leading-[1.1] tracking-[-0.03em] sm:text-[2.4rem] lg:text-[2.75rem];
+    }
+
+    .section-title {
+        @apply text-[1.55rem] font-semibold leading-[1.18] tracking-[-0.025em] sm:text-[1.95rem];
+    }
+
+    .accent {
+        @apply text-brand-700;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-[2px] bg-brand-900 px-5 py-3 text-[13px] font-semibold text-cream transition duration-200 hover:bg-brand-800 active:translate-y-px;
+    }
+
+    .btn-lime {
+        @apply inline-flex items-center justify-center gap-2 rounded-[2px] bg-lime-400 px-5 py-3 text-[13px] font-semibold text-brand-950 transition duration-200 hover:bg-lime-300 active:translate-y-px;
+    }
+
+    .btn-soft {
+        @apply inline-flex items-center justify-center gap-2 rounded-[2px] border border-ink/15 bg-transparent px-5 py-3 text-[13px] font-semibold text-ink transition duration-200 hover:border-ink/35 hover:bg-white active:translate-y-px;
+    }
+
+    .btn-light {
+        @apply inline-flex items-center justify-center gap-2 rounded-[2px] bg-cream px-5 py-3 text-[13px] font-semibold text-brand-950 transition duration-200 hover:bg-white active:translate-y-px;
+    }
+
+    .btn-outline-light {
+        @apply inline-flex items-center justify-center gap-2 rounded-[2px] border border-white/25 px-5 py-3 text-[13px] font-semibold text-cream transition duration-200 hover:border-white/50 hover:bg-white/10 active:translate-y-px;
+    }
+
+    .field {
+        @apply mt-2 block w-full rounded-[2px] border border-ink/15 bg-white px-4 py-3 text-sm text-ink transition placeholder:text-ink/30 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/10 focus:outline-none;
+    }
+
+    .label {
+        @apply block text-[12px] font-semibold uppercase tracking-[0.08em] text-ink/70;
+    }
+
+    .hint {
+        @apply text-xs leading-relaxed text-ink/45;
+    }
+
+    .card {
+        @apply rounded-[3px] border border-ink/10 bg-white;
+    }
+
+    .admin-card {
+        @apply rounded-[3px] border border-ink/10 bg-white;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-1.5 rounded-[2px] border border-ink/15 bg-transparent px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-ink/60;
+    }
+
+    .icon-btn {
+        @apply inline-grid h-9 w-9 place-items-center rounded-[2px] text-ink/50 transition hover:bg-ink/5 hover:text-ink;
+    }
+
+    .table-th {
+        @apply px-5 py-3.5 text-left text-[9.5px] font-semibold uppercase tracking-[0.14em] text-ink/40;
+    }
+
+    .link-arrow {
+        @apply inline-flex items-center gap-2 border-b border-ink/25 pb-1 text-[13px] font-semibold text-ink transition hover:border-brand-700 hover:text-brand-800;
+    }
+
+    .no-scrollbar {
+        scrollbar-width: none;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
